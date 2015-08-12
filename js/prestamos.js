@@ -10,13 +10,17 @@ $(document).ready(function() {
 	
 		// Metodos publicos para Proceso
 		Proceso.prototype = {
-
+			data : {
+				maestros : './data.maestro.aspx',
+				laboratorios : './data.laboratorios.aspx'
+			},
 			actualizaMaestro : function(clave){
 				var self = this;
-				var url_maestros = "./maestro.aspx?clave=" + clave;
-				if(clave == self.claveMaestro) return false; 
+				var url_maestros = self.data.maestros + "?clave=" + clave;
+				// if(clave == self.claveMaestro) return false; 
 
 				$.getJSON(url_maestros,function(maestro){
+
 					if(maestro.Nombre){
 						self.claveMaestro = maestro.Clave;
 						$('#field_clave').empty().text(maestro.Clave);
@@ -38,7 +42,7 @@ $(document).ready(function() {
 					// if(state ===false){
 					// 	this.disabled = true;
 					// }else 
-					if($(this).prev().attr('data-status') === "1"){
+					if($(this).prev().attr('data-status') === "0"){
 						this.disabled = false;
 					}else{
 						this.disabled = true;
@@ -50,7 +54,7 @@ $(document).ready(function() {
 			habilitaLiberar : function(){
 				$("#lista-laboratorios>ul>li>button.liberar").each(function(){
 
-					if($(this).prevAll(".icon-status").attr('data-status') === "0"){
+					if($(this).prevAll(".icon-status").attr('data-status') === "1"){
 						this.disabled = false ;
 					}else{
 						this.disabled = true;
@@ -73,7 +77,7 @@ $(document).ready(function() {
 				if(confirmacion == false ) return false;
 
 				var self = this;
-				var url = "./laboratorios.aspx?accion=asigna&idlab="+idlab+"&idmaestro="+this.claveMaestro;
+				var url = self.data.laboratorios + "?accion=asigna&idlab="+idlab+"&idmaestro="+this.claveMaestro;
 				$.get(url, function(resultado){
 					$('#lista-laboratorios').empty().html(resultado);
 				});
@@ -87,7 +91,7 @@ $(document).ready(function() {
 				if(confirmacion == false ) return false;
 
 				var self = this;
-				var url = "./laboratorios.aspx?accion=libera&idlab="+idlab;
+				var url = self.data.laboratorios + "?accion=libera&idlab="+idlab;
 				$.get(url, function(resultado){
 					$('#lista-laboratorios').empty().html(resultado);
 				});
@@ -98,7 +102,7 @@ $(document).ready(function() {
 			actualizaLabs :function(){
 				var self = this;
 				$.ajax({
-					url: './laboratorios.aspx'
+					url: self.data.laboratorios
 				})
 				.done(function(data) {
 					$('#lista-laboratorios').html(data);

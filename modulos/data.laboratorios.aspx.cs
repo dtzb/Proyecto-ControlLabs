@@ -7,24 +7,17 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
-//Importante para validacion de sesion
-using System.Web.SessionState;
+
+using MonitorEquipos.librerias;
 
 namespace MonitorEquipos
 {
-    public partial class laboratorios : System.Web.UI.Page
+    public partial class laboratorios : PageBase
     {
         string cs = ConfigurationManager.ConnectionStrings["nuevo"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* Verifica que exista una sesion iniciada. Si no es asi redirecciona a la pagina de logout para cerrar toda las sesiones basura y logon redirecciona a la pantalla de login */
-            if (Session["Id"] == null || String.IsNullOrEmpty(Session["Id"].ToString()))
-            {
-                Response.Redirect("logon.aspx?action=logout");
-            }
-
-
             string accion = String.IsNullOrEmpty(Request.QueryString["accion"]) ? null : Request.QueryString["accion"];
             string idlab = String.IsNullOrEmpty(Request.QueryString["idlab"]) ? null : Request.QueryString["idlab"];
             string idmaestro = String.IsNullOrEmpty(Request.QueryString["idmaestro"]) ? null : Request.QueryString["idmaestro"];
@@ -56,11 +49,11 @@ namespace MonitorEquipos
             foreach (DataRow laboratorio in lista.Rows)
             {
                 resultado += "<li data-key=\"" + laboratorio["id"] + "\">";
-                resultado += "<span class=\"caption\">Laboratorio " + laboratorio["Numero"] + "</span>";
+                resultado += "<span class=\"caption\">Laboratorio " + laboratorio["Nombre"] + "</span>";
                 //resultado += "<span class=\"caption\">Asignado a: "+
                 resultado += "<span class=\"icon-status\" data-status=\""+laboratorio["Estado"]+"\"></span>";
-                resultado += "<button class=\"asignar pure-button\" onmouseup = \"Proceso.asignaLab('" + laboratorio["Numero"] + "');\" disabled=\"true\">Asignar</button>";
-                resultado += "<button class=\"liberar pure-button\" onmouseup = \"Proceso.liberaLab('" + laboratorio["Numero"] + "');\" disabled=\"false\">Liberar</button>";
+                resultado += "<button class=\"asignar pure-button\" onmouseup = \"Proceso.asignaLab('" + laboratorio["Id"] + "');\" disabled=\"true\">Asignar</button>";
+                resultado += "<button class=\"liberar pure-button\" onmouseup = \"Proceso.liberaLab('" + laboratorio["Id"] + "');\" disabled=\"false\">Liberar</button>";
                 resultado += "</li>";
             }
             resultado += "</ul>";
@@ -69,17 +62,18 @@ namespace MonitorEquipos
         private void asigna(string idlab, string idmaestro)
         {
             SqlConnection conexion = new SqlConnection(cs);
-            string query_insert = "INSERT INTO [dbo].[Prestamos] SELECT  Laboratorio = @idlab, Profesor = (SELECT Clave FROM Profesor Where Clave = @idmaestro), Administrador = 0, Fecha = GETDATE() ";
+            string query_insert = "INSERT INTO [dbo].[Prestamos] SELECT  Laboratorio = @idlab, Profesor = (SELECT Id FROM Profesores Where Clave = @idmaestro), Administrador = 0, Entrada = GETDATE(), Salida = NULL";
             SqlCommand cmd_insert = new SqlCommand(query_insert, conexion);
             conexion.Open();
             cmd_insert.Parameters.AddWithValue("@idlab", idlab);
             cmd_insert.Parameters.AddWithValue("@idmaestro", idmaestro);
+            
             cmd_insert.ExecuteNonQuery();
 
-            string query_update = "UPDATE [dbo].[laboratorio] SET Estado='0' WHERE Numero=@idlab";
+            string query_update = "UPDATE [dbo].[laboratorios] SET Estado=1 WHERE Id=@idlab";
             SqlCommand cmd_update = new SqlCommand(query_update, conexion);
 
-            cmd_update.Parameters.AddWithValue("@idlab", idlab);
+            cmd_update.Parameters.AddWithValue("@idlab", int.Parse(idlab));
             cmd_update.ExecuteNonQuery();
             conexion.Close();
             
@@ -91,7 +85,7 @@ namespace MonitorEquipos
 
             conexion.Open();
 
-            string query_update = "UPDATE [dbo].[laboratorio] SET Estado='1' WHERE Numero=@idlab";
+            string query_update = "UPDATE [dbo].[laboratorios] SET Estado=0 WHERE Numero=@idlab";
             SqlCommand cmd_update = new SqlCommand(query_update, conexion);
 
             cmd_update.Parameters.AddWithValue("@idlab", idlab);
@@ -104,7 +98,7 @@ namespace MonitorEquipos
         {
             using (SqlConnection conexion = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT CONCAT(Profesor.Nombre,' ',Profesor.Apellido) AS Profesor FROM Profesor WHERE Profesor.Clave='@idmaestro'"))
+                using (SqlCommand cmd = new SqlCommand("SELECT CONCAT(Profesores.Nombre,' ',Profesores.Apellido) AS Profesor FROM Profesores WHERE Profesores.Clave='@idmaestro'"))
                 {                                     
                     String returnValue;
             
@@ -126,7 +120,7 @@ namespace MonitorEquipos
             
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM laboratorio"))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Laboratorios"))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {

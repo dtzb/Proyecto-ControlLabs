@@ -9,7 +9,7 @@
     <link href="../css/Estilo.css" rel="stylesheet" />
 	<script src="../js/jquery-2.1.4.min.js"></script>
 	<script src="../js/html5-qrcode.min.js"></script>
-	<script src="../js/app.js"></script>
+	<script src="../js/prestamos.js"></script>
     <link href="../css/pure-min.css" rel="stylesheet" />
 
 

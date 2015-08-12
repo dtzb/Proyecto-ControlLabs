@@ -7,3 +7,8 @@ C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\bin\MonitorEquipos.pdb
 C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.csprojResolveAssemblyReference.cache
 C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.dll
 C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.pdb
+C:\dev\cs\Proyecto-ControlLabs\bin\MonitorEquipos.dll
+C:\dev\cs\Proyecto-ControlLabs\bin\MonitorEquipos.pdb
+C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.csprojResolveAssemblyReference.cache
+C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.dll
+C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.pdb

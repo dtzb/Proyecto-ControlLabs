@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MonitorEquipos.librerias;
 
 namespace MonitorEquipos.modulos
 {
-    public partial class reporteincidentes : System.Web.UI.Page
+    public partial class reporteincidentes : PageBase
     {
         protected void Page_Load(object sender, EventArgs e)
         {

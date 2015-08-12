@@ -68,16 +68,16 @@
     <Content Include="css\pure-min.css" />
     <Content Include="css\theme.css" />
     <Content Include="Inicio.aspx" />
-    <Content Include="js\app.js" />
+    <Content Include="js\prestamos.js" />
     <Content Include="js\html5-qrcode.min.js" />
     <Content Include="js\jquery-2.1.4.min.js" />
     <Content Include="modulos\gestionadmin.aspx" />
     <Content Include="modulos\gestionlaboratorios.aspx" />
     <Content Include="modulos\gestionmaestros.aspx" />
-    <Content Include="modulos\laboratorios.aspx" />
+    <Content Include="modulos\data.laboratorios.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logon.aspx" />
-    <Content Include="modulos\maestro.aspx" />
+    <Content Include="modulos\data.maestro.aspx" />
     <Content Include="modulos\prestamos.aspx" />
     <Content Include="modulos\registroincidencias.aspx" />
     <Content Include="modulos\reporteincidentes.aspx" />
@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="librerias\librerias.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="modulos\gestionadmin.aspx.cs">
       <DependentUpon>gestionadmin.aspx</DependentUpon>
@@ -119,12 +122,12 @@
     <Compile Include="modulos\gestionmaestros.aspx.designer.cs">
       <DependentUpon>gestionmaestros.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\laboratorios.aspx.cs">
-      <DependentUpon>laboratorios.aspx</DependentUpon>
+    <Compile Include="modulos\data.laboratorios.aspx.cs">
+      <DependentUpon>data.laboratorios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="modulos\laboratorios.aspx.designer.cs">
-      <DependentUpon>laboratorios.aspx</DependentUpon>
+    <Compile Include="modulos\data.laboratorios.aspx.designer.cs">
+      <DependentUpon>data.laboratorios.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
@@ -140,12 +143,12 @@
     <Compile Include="logon.aspx.designer.cs">
       <DependentUpon>logon.aspx</DependentUpon>
     </Compile>
-    <Compile Include="modulos\maestro.aspx.cs">
-      <DependentUpon>maestro.aspx</DependentUpon>
+    <Compile Include="modulos\data.maestro.aspx.cs">
+      <DependentUpon>data.maestro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="modulos\maestro.aspx.designer.cs">
-      <DependentUpon>maestro.aspx</DependentUpon>
+    <Compile Include="modulos\data.maestro.aspx.designer.cs">
+      <DependentUpon>data.maestro.aspx</DependentUpon>
     </Compile>
     <Compile Include="modulos\registroincidencias.aspx.cs">
       <DependentUpon>registroincidencias.aspx</DependentUpon>

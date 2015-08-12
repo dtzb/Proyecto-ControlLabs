@@ -44,11 +44,11 @@ namespace MonitorEquipos
             string cadenaConsulta = "";
             if (modo == "admin")
             {
-                cadenaConsulta = "SELECT TOP 1 * FROM usuarios WHERE Usuario = '" + usuario + "' and Password = '" + pass + "'";
+                cadenaConsulta = "SELECT TOP 1 * FROM Administradores WHERE Usuario = '" + usuario + "' and Password = '" + pass + "'";
             }
             else if (modo == "maestro")
             {
-                cadenaConsulta = "SELECT TOP 1 * FROM Profesor WHERE Clave = '" + usuario + "' and Password = '" + pass + "'";
+                cadenaConsulta = "SELECT TOP 1 * FROM Profesores WHERE Clave = '" + usuario + "' and Password = '" + pass + "'";
             }
 
             using (SqlConnection con = new SqlConnection(cs))
