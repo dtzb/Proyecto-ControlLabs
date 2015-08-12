@@ -48,9 +48,9 @@ namespace MonitorEquipos
             resultado += "<ul>";
             foreach (DataRow laboratorio in lista.Rows)
             {
-                resultado += "<li data-key=\"" + laboratorio["id"] + "\">";
+                resultado += "<li data-key=\"" + laboratorio["id"] + " data-asignado=\"" + laboratorio["AsignadoId"] + "\">";
                 resultado += "<span class=\"caption\">Laboratorio " + laboratorio["Nombre"] + "</span>";
-                //resultado += "<span class=\"caption\">Asignado a: "+
+                resultado += "<span class=\"caption\">Asignado a: " + laboratorio["Asignado"] + "</span>";
                 resultado += "<span class=\"icon-status\" data-status=\""+laboratorio["Estado"]+"\"></span>";
                 resultado += "<button class=\"asignar pure-button\" onmouseup = \"Proceso.asignaLab('" + laboratorio["Id"] + "');\" disabled=\"true\">Asignar</button>";
                 resultado += "<button class=\"liberar pure-button\" onmouseup = \"Proceso.liberaLab('" + laboratorio["Id"] + "');\" disabled=\"false\">Liberar</button>";
@@ -117,10 +117,25 @@ namespace MonitorEquipos
 
         private DataTable consultalab()
         {
-            
+            string query = "";
+            query += "SELECT *, ";
+            query += "Asignado = ( ";
+            query += "SELECT CASE WHEN Labs.Estado = 1 THEN ( ";
+            query += "SELECT TOP 1 CONCAT(profr.Nombre, ' ' ,  profr.Apellido)FROM Prestamos AS prest LEFT JOIN Profesores AS profr ON profr.id = prest.profesor ";
+            query += "WHERE prest.laboratorio = Labs.id ";
+            query += ") ELSE NULL END as Asignado),";
+            query += "AsignadoId = ( ";
+            query += "SELECT CASE WHEN Labs.Estado = 1 THEN ( ";
+            query += "SELECT TOP 1 profr.Id FROM Prestamos AS prest LEFT JOIN Profesores AS profr ON profr.id = prest.profesor ";
+            query += "WHERE prest.laboratorio = Labs.id ";
+            query += ") ELSE NULL END as AsignadoId";
+            query += ")";
+            query += "FROM Laboratorios AS Labs";
+
+
             using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Laboratorios"))
+                using (SqlCommand cmd = new SqlCommand(query))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
