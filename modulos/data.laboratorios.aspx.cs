@@ -85,11 +85,20 @@ namespace MonitorEquipos
 
             conexion.Open();
 
-            string query_update = "UPDATE [dbo].[laboratorios] SET Estado=0 WHERE Numero=@idlab";
+            string query_update = "UPDATE [dbo].[laboratorios] SET Estado=0 WHERE id=@idlab";
             SqlCommand cmd_update = new SqlCommand(query_update, conexion);
 
             cmd_update.Parameters.AddWithValue("@idlab", idlab);
             cmd_update.ExecuteNonQuery();
+
+
+            query_update = "UPDATE [dbo].[Prestamos] SET Salida=GETDATE() WHERE id= (SELECT TOP 1 id FROM Prestamos WHERE Laboratorio=@idlab ORDER BY Entrada DESC)";
+            cmd_update = new SqlCommand(query_update, conexion);
+
+            cmd_update.Parameters.AddWithValue("@idlab", idlab);
+            cmd_update.ExecuteNonQuery();
+            conexion.Close();
+
             conexion.Close();
 
         }
