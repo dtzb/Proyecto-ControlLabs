@@ -1,0 +1,9 @@
+C:\dev\cs\vs2010\MonitorEquipos\bin\MonitorEquipos.dll
+C:\dev\cs\vs2010\MonitorEquipos\bin\MonitorEquipos.pdb
+C:\dev\cs\vs2010\MonitorEquipos\obj\Debug\MonitorEquipos.dll
+C:\dev\cs\vs2010\MonitorEquipos\obj\Debug\MonitorEquipos.pdb
+C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\bin\MonitorEquipos.dll
+C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\bin\MonitorEquipos.pdb
+C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.csprojResolveAssemblyReference.cache
+C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.dll
+C:\Users\Dan\Documents\UTM\Proyecto\MonitorEquiposNuevo\obj\Debug\MonitorEquipos.pdb

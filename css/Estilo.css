@@ -1,0 +1,55 @@
+﻿body {
+	font-family: 'Lato', sans-serif;
+}
+
+li {
+	padding: 18px;
+}
+
+.sidebar, .frame{
+	top:90px;
+
+}
+
+.label{
+	font-family: 'Lato', sans-serif;
+	font-size: 19px;
+	padding: 5px;
+}
+
+.field{
+	padding:10px;
+	background: 
+}
+
+.caption{
+	color: ##363638;
+    font-size: 22px;
+}
+
+th, td, tr{
+	padding:12px;
+	font-family: 'Lato', sans-serif;
+	font-size: 18px;
+	margin:10px;
+	line-height: 150%;
+
+}
+.tabla{
+	font-size: 16px;
+	padding:8px;
+	font-family: 'Lato', sans-serif;
+	margin:10px;
+	
+}
+th{
+	font-size: 20px;
+}
+
+h2{
+	text-align: center;
+}
+
+
+
+

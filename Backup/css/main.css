@@ -1,0 +1,100 @@
+body{
+	font-family: arial;
+	margin:0px;
+	padding:0px;
+	background-color: #fff;
+
+}
+#header,#content,#footer{
+	width:800px;
+	margin:auto;
+}
+#header{
+	position:relative;
+}
+#content{
+	display:block;
+	overflow:auto;
+	position:relative;
+	overflow:hidden;
+	height:800px;
+}
+	#lista-laboratorios, #sidebar{
+		display:block;
+	}	
+
+	#lista-laboratorios{
+		position:absolute;
+		top:0px;
+		right:300px;
+		bottom:0px;
+		left:0px;
+	}
+	#lista-laboratorios>ul{
+		padding:0px;
+		margin:0px;
+		list-style:none;
+		overflow:auto;
+	}
+	#lista-laboratorios>ul>li{
+		display:block;
+		margin:5px;
+		padding:2px;
+		background-color:#efefef;
+		overflow:auto;
+	}
+	#lista-laboratorios>ul>li>*{
+		display:block;
+		float:left;
+		margin:10px;
+		height:30px;
+	}
+	#lista-laboratorios>ul>li>span.caption{
+		width:50%;
+	}
+	#lista-laboratorios>ul>li>span.icon-status{
+		width:30px;
+		height:30px;
+		display:inline-block;
+		border-radius:100%;
+	}
+	#lista-laboratorios>ul>li>span.icon-status[data-status="1"]{
+		background-color:#0f0;
+	}
+	#lista-laboratorios>ul>li>span.icon-status[data-status="0"]{
+		background-color:#f00;
+	}
+	#lista-laboratorios>ul>li>button.asignar{
+
+	}
+	
+	#sidebar{
+		position:absolute;
+		top:0px;
+		right:0px;
+		bottom:0px;
+		/*left:0px;*/
+		width:300px;
+	}
+	#sidebar>div{
+
+	}
+	#sidebar>#qr-reader{
+		width:300px;
+		height:300px;
+		background-color:#efefef;
+	}
+	#sidebar>div>input[type="text"]{
+		width:100%;
+		outline:none;
+		border:none;
+		background-color:transparent;
+		text-align: center;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	#sidebar>#informacion-maestro{
+		border-top:solid 1px #ccc;
+	}
+
+#footer{}
