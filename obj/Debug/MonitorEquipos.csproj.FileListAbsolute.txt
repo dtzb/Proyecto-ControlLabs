@@ -12,3 +12,8 @@ C:\dev\cs\Proyecto-ControlLabs\bin\MonitorEquipos.pdb
 C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.csprojResolveAssemblyReference.cache
 C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.dll
 C:\dev\cs\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.pdb
+D:\dev\Proyecto-ControlLabs\bin\MonitorEquipos.dll
+D:\dev\Proyecto-ControlLabs\bin\MonitorEquipos.pdb
+D:\dev\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.csprojResolveAssemblyReference.cache
+D:\dev\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.dll
+D:\dev\Proyecto-ControlLabs\obj\Debug\MonitorEquipos.pdb

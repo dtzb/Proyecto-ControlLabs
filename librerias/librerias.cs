@@ -10,8 +10,8 @@ namespace MonitorEquipos.librerias
     {
         protected override void OnLoad(EventArgs e)
         {
-            /* Verifica que exista una sesion iniciada. Si no es asi redirecciona a la pagina de logout para cerrar toda las sesiones basura y logon redirecciona a la pantalla de login */
-            /*
+            // Verifica que exista una sesion iniciada. Si no es asi redirecciona a la pagina de logout para cerrar toda las sesiones basura y logon redirecciona a la pantalla de login */
+            
             if (Session["Id"] == null || String.IsNullOrEmpty(Session["Id"].ToString()))
             {
                 string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
@@ -24,7 +24,7 @@ namespace MonitorEquipos.librerias
                 {
                     type.GetMethod("Page_Session_Load").Invoke(this, null);
                 }
-            }*/
+            }
             base.OnLoad(e);
         }
     }

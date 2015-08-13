@@ -26,7 +26,6 @@
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" SortExpression="Apellido" />
-                <asp:BoundField DataField="Tipo" HeaderText="Tipo" SortExpression="Tipo" />
                 <asp:BoundField DataField="Usuario" HeaderText="Usuario" SortExpression="Usuario" />
                 <asp:BoundField DataField="Password" HeaderText="Password" SortExpression="Password" />
                 <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
@@ -47,9 +46,6 @@
                  Apellido:
                  <asp:TextBox ID="ApellidoTextBox" runat="server" Text='<%# Bind("Apellido") %>' />
                  <br />
-                 Tipo:
-                 <asp:TextBox ID="TipoTextBox" runat="server" Text='<%# Bind("Tipo") %>' />
-                 <br />
                  Usuario:
                  <asp:TextBox ID="UsuarioTextBox" runat="server" Text='<%# Bind("Usuario") %>' />
                  <br />
@@ -59,8 +55,8 @@
                  Email:
                  <asp:TextBox ID="EmailTextBox" runat="server" Text='<%# Bind("Email") %>' />
                  <br />
-                 <asp:LinkButton ID="UpdateButton" class="pure-button button-large" runat="server" CausesValidation="True" CommandName="Update" Text="Actualizar" />
-                 &nbsp;<asp:LinkButton ID="UpdateCancelButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
+                 <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+             &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
              </EditItemTemplate>
              <InsertItemTemplate>
                  Nombre:
@@ -69,9 +65,6 @@
                  Apellido:
                  <asp:TextBox ID="ApellidoTextBox" runat="server" Text='<%# Bind("Apellido") %>' />
                  <br />
-                 Tipo:
-                 <asp:TextBox ID="TipoTextBox" runat="server" Text='<%# Bind("Tipo") %>' />
-                 <br />
                  Usuario:
                  <asp:TextBox ID="UsuarioTextBox" runat="server" Text='<%# Bind("Usuario") %>' />
                  <br />
@@ -81,8 +74,8 @@
                  Email:
                  <asp:TextBox ID="EmailTextBox" runat="server" Text='<%# Bind("Email") %>' />
                  <br />
-                 <asp:LinkButton ID="InsertButton" class="pure-button button-large" runat="server" CausesValidation="True" CommandName="Insert" Text="Insertar" />
-             &nbsp;<asp:LinkButton ID="InsertCancelButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
+                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+             &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
              </InsertItemTemplate>
              <ItemTemplate>
                  id:
@@ -94,9 +87,6 @@
                  Apellido:
                  <asp:Label ID="ApellidoLabel" runat="server" Text='<%# Bind("Apellido") %>' />
                  <br />
-                 Tipo:
-                 <asp:Label ID="TipoLabel" runat="server" Text='<%# Bind("Tipo") %>' />
-                 <br />
                  Usuario:
                  <asp:Label ID="UsuarioLabel" runat="server" Text='<%# Bind("Usuario") %>' />
                  <br />
@@ -106,21 +96,20 @@
                  Email:
                  <asp:Label ID="EmailLabel" runat="server" Text='<%# Bind("Email") %>' />
                  <br />
-                 <asp:LinkButton ID="EditButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar" />
-                 &nbsp;<asp:LinkButton ID="DeleteButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" />
-             &nbsp;<asp:LinkButton ID="NewButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="New" Text="Nuevo" />
+                 <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
+             &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                 &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
              </ItemTemplate>
          </asp:FormView>
     </div>
             </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" DeleteCommand="DELETE FROM [usuarios] WHERE [id] = @id" InsertCommand="INSERT INTO [usuarios] ([Nombre], [Apellido], [Tipo], [Usuario], [Password], [Email]) VALUES (@Nombre, @Apellido, @Tipo, @Usuario, @Password, @Email)" SelectCommand="SELECT * FROM [usuarios]" UpdateCommand="UPDATE [usuarios] SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Tipo] = @Tipo, [Usuario] = @Usuario, [Password] = @Password, [Email] = @Email WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" DeleteCommand="DELETE FROM [Administradores] WHERE [id] = @id" InsertCommand="INSERT INTO [Administradores] ([Nombre], [Apellido], [Usuario], [Password], [Email]) VALUES (@Nombre, @Apellido, @Usuario, @Password, @Email)" SelectCommand="SELECT * FROM [Administradores]" UpdateCommand="UPDATE [Administradores] SET [Nombre] = @Nombre, [Apellido] = @Apellido, [Usuario] = @Usuario, [Password] = @Password, [Email] = @Email WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
             <InsertParameters>
                 <asp:Parameter Name="Nombre" Type="String" />
                 <asp:Parameter Name="Apellido" Type="String" />
-                <asp:Parameter Name="Tipo" Type="String" />
                 <asp:Parameter Name="Usuario" Type="String" />
                 <asp:Parameter Name="Password" Type="String" />
                 <asp:Parameter Name="Email" Type="String" />
@@ -128,7 +117,6 @@
             <UpdateParameters>
                 <asp:Parameter Name="Nombre" Type="String" />
                 <asp:Parameter Name="Apellido" Type="String" />
-                <asp:Parameter Name="Tipo" Type="String" />
                 <asp:Parameter Name="Usuario" Type="String" />
                 <asp:Parameter Name="Password" Type="String" />
                 <asp:Parameter Name="Email" Type="String" />

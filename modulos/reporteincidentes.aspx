@@ -42,33 +42,14 @@
      <asp:GridView ID="GridView1" class="pure-table tabla" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="id">
          <Columns>
              <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-             <asp:BoundField DataField="Laboratorio" HeaderText="Laboratorio" SortExpression="Laboratorio" />
              <asp:BoundField DataField="Detalles" HeaderText="Detalles" SortExpression="Detalles" />
-             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
              <asp:BoundField DataField="Antecedentes" HeaderText="Antecedentes" SortExpression="Antecedentes" />
-             <asp:BoundField DataField="Profesor" HeaderText="Profesor" SortExpression="Profesor" />
+             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
+             <asp:BoundField DataField="Prestamo" HeaderText="Prestamo" SortExpression="Prestamo" />
          </Columns>
     </asp:GridView>
          </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" DeleteCommand="DELETE FROM [Incidencias] WHERE [id] = @id" InsertCommand="INSERT INTO [Incidencias] ([Laboratorio], [Detalles], [Fecha], [Antecedentes], [Profesor]) VALUES (@Laboratorio, @Detalles, @Fecha, @Antecedentes, @Profesor)" SelectCommand="SELECT * FROM [Incidencias]" UpdateCommand="UPDATE [Incidencias] SET [Laboratorio] = @Laboratorio, [Detalles] = @Detalles, [Fecha] = @Fecha, [Antecedentes] = @Antecedentes, [Profesor] = @Profesor WHERE [id] = @id">
-        <DeleteParameters>
-            <asp:Parameter Name="id" Type="Int32" />
-        </DeleteParameters>
-        <InsertParameters>
-            <asp:Parameter Name="Laboratorio" Type="Int32" />
-            <asp:Parameter Name="Detalles" Type="String" />
-            <asp:Parameter Name="Fecha" Type="DateTime" />
-            <asp:Parameter Name="Antecedentes" Type="String" />
-            <asp:Parameter Name="Profesor" Type="String" />
-        </InsertParameters>
-        <UpdateParameters>
-            <asp:Parameter Name="Laboratorio" Type="Int32" />
-            <asp:Parameter Name="Detalles" Type="String" />
-            <asp:Parameter Name="Fecha" Type="DateTime" />
-            <asp:Parameter Name="Antecedentes" Type="String" />
-            <asp:Parameter Name="Profesor" Type="String" />
-            <asp:Parameter Name="id" Type="Int32" />
-        </UpdateParameters>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" SelectCommand="SELECT * FROM [Incidencias]">
     </asp:SqlDataSource>
 
      <br />
@@ -79,14 +60,13 @@
          </div>
      <br />
      <br />
-     <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2">
+     <asp:GridView ID="GridView2" class="pure-table tabla" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource2" DataKeyNames="id">
          <Columns>
-             <asp:BoundField DataField="Profesor" HeaderText="Profesor" SortExpression="Profesor" />
-             <asp:BoundField DataField="Laboratorio" HeaderText="Laboratorio" SortExpression="Laboratorio" />
-             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
-             <asp:BoundField DataField="Clave_Prof" HeaderText="Clave_Prof" SortExpression="Clave_Prof" />
-             <asp:BoundField DataField="Detalles" HeaderText="Detalles" SortExpression="Detalles" />
-             <asp:BoundField DataField="Antecedentes" HeaderText="Antecedentes" SortExpression="Antecedentes" />
+             <asp:BoundField DataField="Entrada" HeaderText="Entrada" SortExpression="Entrada" />
+             <asp:BoundField DataField="Salida" HeaderText="Salida" SortExpression="Salida" />
+             <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" ReadOnly="True" />
+             <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+             <asp:BoundField DataField="Expr1" HeaderText="Expr1" SortExpression="Expr1" ReadOnly="True" />
          </Columns>
      </asp:GridView>
     <br />
@@ -94,9 +74,9 @@
      <input Class="btn btn-danger" id="imprimir" type="button" value="imprimir" onclick="window.print();" />
          </div>
      <br />
-     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" SelectCommand="SELECT * FROM [Vista2] WHERE ([Profesor] LIKE '%' + @Profesor + '%')">
+     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" SelectCommand="SELECT * FROM [Vista1] WHERE ([id] = @id)">
          <SelectParameters>
-             <asp:ControlParameter ControlID="TextBox1" Name="Profesor" PropertyName="Text" Type="String" />
+             <asp:ControlParameter ControlID="TextBox1" Name="id" PropertyName="Text" Type="Int32" />
          </SelectParameters>
      </asp:SqlDataSource>
      <br />

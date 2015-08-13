@@ -21,11 +21,12 @@
         <div class="pure-g">
         
     <div class="pure-u-12-24">
-        <asp:GridView ID="GridView1" class="pure-table tabla" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" class="pure-table tabla" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="Numero" HeaderText="Numero" SortExpression="Numero" />
+                <asp:BoundField DataField="Numero" HeaderText="Número" SortExpression="Numero" />
                 <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
+                
             </Columns>
         </asp:GridView>
     </div>

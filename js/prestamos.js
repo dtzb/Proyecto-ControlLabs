@@ -137,14 +137,12 @@ $(document).ready(function() {
 
 	$("#qr-reader").html5_qrcode(Qr.on_read,Qr.on_error,Qr.on_vide_error);
 
-	// $('#lista-laboratorios>ul>li>button').on( 'click', asignar ));
-
-	// $('#reader').html5_qrcode(function(data) {
-	// 		$('#<%=txtCodigo.ClientID%>').val(data);
-	// 	},
-	// 	function(error) {},
-	// 	function(videoError) {
-	// 		alert("No hay cámara");
-	// 	}
-	// );
+// $('#lista-laboratorios>ul>li>button').on( 'click', asignar )); $('#reader').html5_qrcode(function(data) {
+// 		$('#<%=txtCodigo.ClientID%>').val(data);
+// 	},
+// 	function(error) {},
+// 	function(videoError) {
+// 		alert("No hay cámara");
+// 	}
+// );
 });
