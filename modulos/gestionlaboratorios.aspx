@@ -1,96 +1,145 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gestionlaboratorios.aspx.cs" Inherits="MonitorEquipos.modulos.gestionlaboratorios" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gestionlaboratorios.aspx.cs"
+	Inherits="MonitorEquipos.modulos.gestionlaboratorios" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Gesti&oacute;n de Profesores</title>
-    <link rel="stylesheet" href="../css/main.css"/>
-    <link href="../css/Estilo.css" rel="stylesheet" />
-<%--	<script src="../js/jquery-2.1.4.min.js"></script>
-	<script src="../js/html5-qrcode.min.js"></script>
-	<script src="../js/app.js"></script>--%>
-    <link href="../css/pure-min.css" rel="stylesheet" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Gesti&oacute;n de Profesores</title>
+
+	<link type="text/css" rel="stylesheet" href="../css/materialize.min.css" media="screen,projection" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css">
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/materialize.min.js"></script>
+	<script>
+	$(document).ready(function(){
+
+		$('#btn-agregar, .btn-editar, .btn-borrar').on('click',function(){
+			var modal_element = $(this).attr("href") || '#' + $(this).data('target');
+			var accion = $(this).attr('data-accion');
+			var id = $(this).attr('data-lab-id');
+
+			$('#form_accion').val( accion );
+			if(accion == "editar"){
+				$.getJSON('./data.laboratorios.aspx?get='+id,function(data){
+					$.each(data,function(key,value){
+						var field = $('#form_'+key);
+						if(field.get(0)) field.val(value);
+					});
+			        $(modal_element).openModal(options);
+				}
+			}else if(accion == "nuevo"){
+				$(modal_element).openModal(options);
+			}else if(accion == "borrar"){
+				alert("borrar");
+			}
+			e.preventDefault();
+		});
+	});
+
+	</script>
 </head>
 <body>
-    <div>
-        <h2>Gesti&oacute;n de Profesores</h2>
-    </div>
-    
-    <form id="form1" runat="server">
-        <div class="pure-g">
-        
-    <div class="pure-u-12-24">
-        <asp:GridView ID="GridView1" class="pure-table tabla" runat="server" AllowPaging="True" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" OnRowDataBound="GridView1_RowDataBound">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
-                <asp:BoundField DataField="Numero" HeaderText="Número" SortExpression="Numero" />
-                <asp:BoundField DataField="Estado" HeaderText="Estado" SortExpression="Estado" />
-                
-            </Columns>
-        </asp:GridView>
-    </div>
-    <div class="pure-u-12-24">
-         <asp:FormView ID="FormView1" class="pure-table tabla" runat="server" DataKeyNames="id" DataSourceID="SqlDataSource1" AllowPaging="True">
-             <EditItemTemplate>
-                 id:
-                 <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
-                 <br />
-                 Numero:
-                 <asp:TextBox ID="NumeroTextBox" runat="server" Text='<%# Bind("Numero") %>' />
-                 <br />
-                 Estado:
-                 <asp:TextBox ID="EstadoTextBox" runat="server" Text='<%# Bind("Estado") %>' />
-                 <br />
-                 <asp:LinkButton ID="UpdateButton" class="pure-button button-large" runat="server" CausesValidation="True" CommandName="Update" Text="Actualizar" />
-                 &nbsp;<asp:LinkButton ID="UpdateCancelButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
-             </EditItemTemplate>
-             <InsertItemTemplate>
-                 id:
-                 <asp:TextBox ID="idTextBox" runat="server" Text='<%# Bind("id") %>' />
-                 <br />
-                 Numero:
-                 <asp:TextBox ID="NumeroTextBox" runat="server" Text='<%# Bind("Numero") %>' />
-                 <br />
-                 Estado:
-                 <asp:TextBox ID="EstadoTextBox" runat="server" Text='<%# Bind("Estado") %>' />
-                 <br />
-                 <asp:LinkButton ID="InsertButton" class="pure-button button-large" runat="server" CausesValidation="True" CommandName="Insert" Text="Insertar" />
-             &nbsp;<asp:LinkButton ID="InsertCancelButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancelar" />
-             </InsertItemTemplate>
-             <ItemTemplate>
-                 id:
-                 <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
-                 <br />
-                 Numero:
-                 <asp:Label ID="NumeroLabel" runat="server" Text='<%# Bind("Numero") %>' />
-                 <br />
-                 Estado:
-                 <asp:Label ID="EstadoLabel" runat="server" Text='<%# Bind("Estado") %>' />
-                 <br />
-                 <asp:LinkButton ID="EditButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Edit" Text="Editar" />
-                 &nbsp;<asp:LinkButton ID="DeleteButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="Delete" Text="Eliminar" />
-             &nbsp;<asp:LinkButton ID="NewButton" class="pure-button button-large" runat="server" CausesValidation="False" CommandName="New" Text="Nuevo" />
-             </ItemTemplate>
-         </asp:FormView>
-    </div>
-            </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>" DeleteCommand="DELETE FROM [Laboratorio] WHERE [id] = @id" InsertCommand="INSERT INTO [Laboratorio] ([id], [Numero], [Estado]) VALUES (@id, @Numero, @Estado)" SelectCommand="SELECT * FROM [Laboratorio]" UpdateCommand="UPDATE [Laboratorio] SET [Numero] = @Numero, [Estado] = @Estado WHERE [id] = @id">
-            <DeleteParameters>
-                <asp:Parameter Name="id" Type="String" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="id" Type="String" />
-                <asp:Parameter Name="Numero" Type="Int32" />
-                <asp:Parameter Name="Estado" Type="Int32" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="Numero" Type="Int32" />
-                <asp:Parameter Name="Estado" Type="Int32" />
-                <asp:Parameter Name="id" Type="String" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
-    </form>
+
+	<main>
+		<div class="container">
+			<!-- .row>h1.col.s12{Gesti&oacute;n de Profesores} -->
+			<div class="row">
+				<div class="col s1 offset-s11">
+					<a id="btn-agregar"	data-target="popup-formulario" class="btn-floating btn-large waves-effect waves-light red" data-accion="agregar">
+						<i class="fa fa-plus"></i>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <h3 class="col s12">Gesti&oacute;n de Profesores</h3> -->
+				<form id="form1" runat="server">
+				<asp:GridView ID="GridView1" 
+					class="centered hoverable" 
+					runat="server" AllowPaging="True"
+					AutoGenerateColumns="False" 
+					DataKeyNames="id" 
+					DataSourceID="SqlDataSource1"
+					OnRowDataBound="GridView1_RowDataBound"
+				>
+					<Columns>
+						<asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="id" />
+						<asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
+						<asp:TemplateField HeaderText="Estado">
+							<ItemTemplate>
+								<div class="switch">
+									<label>
+										Off
+										<asp:CheckBox runat="server" ID="Estatus" OnDataBinding="EstatusColumn_DataBinding" />
+										<span class="lever"></span>
+										On
+									</label>
+								</div>
+							</ItemTemplate>
+						</asp:TemplateField>
+						<asp:TemplateField HeaderText="Editar">
+							<ItemTemplate>
+								<a class="waves-effect waves-green accent-3 btn-flat btn-editar" data-target="popup-formulario" data-lab-id='<%# Eval("Id")%>' data-accion="editar">
+									<i class="fa fa-pencil"></i>
+								</a>
+							</ItemTemplate>
+						</asp:TemplateField>
+						<asp:TemplateField HeaderText="Editar">
+							<ItemTemplate>
+								<a class="waves-effect waves-green accent-3 btn-flat btn-borrar" data-lab-id='<%# Eval("Id")%>'>
+									<i class="fa fa-pencil"></i>
+								</a>
+							</ItemTemplate>
+						</asp:TemplateField>
+
+					</Columns>
+				</asp:GridView>
+				<asp:SqlDataSource 
+					ID="SqlDataSource1" 
+					runat="server" 
+					ConnectionString="<%$ ConnectionStrings:ProyectoDTConnectionString %>"
+					DeleteCommand="DELETE FROM [Laboratorios] WHERE [id] = @id" InsertCommand="INSERT INTO [Laboratorios] ([id], [Nombre], [Estado]) VALUES (@id, @Nombre, @Estado)"
+					SelectCommand="SELECT * FROM [Laboratorios]" UpdateCommand="UPDATE [Laboratorios] SET [Nombre] = @Nombre, [Estado] = @Estado WHERE [id] = @id"
+				>
+					<DeleteParameters>
+						<asp:Parameter Name="id" Type="String" />
+					</DeleteParameters>
+					<InsertParameters>
+						<asp:Parameter Name="id" Type="String" />
+						<asp:Parameter Name="Nombre" Type="Int32" />
+						<asp:Parameter Name="Estado" Type="Int32" />
+					</InsertParameters>
+					<UpdateParameters>
+						<asp:Parameter Name="Nombre" Type="Int32" />
+						<asp:Parameter Name="Estado" Type="Int32" />
+						<asp:Parameter Name="id" Type="String" />
+					</UpdateParameters>
+				</asp:SqlDataSource>
+				</form>
+			</div>
+			
+		</div>
+	</main>
+	<div id="popup-formulario" class="modal modal-fixed-foote">
+		<div class="modal-content">
+			<h4 id="popup-formulario-titulo"></h4>
+			<!-- .row>form[action=""].col.s12>(div.input-field.col.s6>input#id[name="id"][placeholder="pch"][type=text].validate+label[for="id"]{"pch"}) -->
+			<div class="row">
+				<form action="./data.laboratorios.aspx" class="col s12" method="POST" id="crud-form">
+					<input type="hidden" 	id="form_accion" 	name="accion" 			value="">
+					<input type="hidden" 	id="form_id" 		name="id" 				value="">
+					<div class="input-field col s6">
+						<input type="text" id="form_Nombre" name="field_Nombre" value="" placeholder="Nombre" class="validate">
+						<label for="fomr_Nombre">"Nombre"</label>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Guardar</a>
+		</div>
+	</div>
+	
 </body>
 </html>
-
